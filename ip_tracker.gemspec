@@ -25,8 +25,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rb-readline"
   s.add_development_dependency "webmock"
 
-
   s.add_runtime_dependency "thor"
   s.add_runtime_dependency "faraday_middleware"
-
+  s.add_runtime_dependency "yajl-ruby"
+  s.add_runtime_dependency "multi_json"
+  s.add_runtime_dependency "rash"
 end

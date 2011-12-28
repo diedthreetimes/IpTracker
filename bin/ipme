@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'ip_tracker'
+require 'ip_tracker/cli'
+
+IpTracker::CLI.start

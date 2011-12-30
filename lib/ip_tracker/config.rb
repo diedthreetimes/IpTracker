@@ -8,7 +8,7 @@ module IpTracker
     end
 
     def host_token
-      config_hash["host_token"] || {}
+      config_hash["host_token"] || nil
     end
 
     def update(attr, value)

@@ -94,10 +94,16 @@ describe IpTracker::CLI do
           end
         end
       end
-
     end
-    # context "and there is a hostid token" do
 
-    # end
+    context "when there is a hostid token" do
+      let(:register) { IpTracker::CLI.start(['register']) }
+      it "should not ask for hostname and print a message" do
+        mock_config.should_receive(:host_token).and_return('token')
+        $stdin.should_not_receive(:gets)
+        results = capture(:stdout) { register }
+        results.should match /This computer has already been registered./
+      end
+    end
   end # register
 end # CLI

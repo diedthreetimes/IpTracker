@@ -9,15 +9,17 @@ describe IpTracker::Client do
         "register_success.txt"
       when :no_name
         "register_taken.txt"
+      when :invalid
+        "register_invalid.txt"
       else
         "register_failure.txt"
       end
-    stub_request(:post, "http://ipme.herokuapp.com/hosts").
-          with(:body => {:hostname => 'foo'}).
+    stub_request(:post, IpTracker::DEFAULT_LOCAL_TARGET + IpTracker::HOSTS_PATH).
+      with(:body => {:name => "foo"}).
           to_return(fixture(fixture_file))
   end
 
-
+  #TODO: Refactor target+hosts to be configurable
   describe "#register" do
 
     context "when successful" do
@@ -27,18 +29,27 @@ describe IpTracker::Client do
 
         host_token = subject.register 'foo'
         subject.host_token.should == host_token
-        host_token.should == "valid_host_token"
+        host_token.should == 6
       end
     end
 
-    it "raises an exception when failed" do
-      stub_register(:failed)
-      expect { subject.register('foo') }.to raise_error IpTracker::Client::TargetError
-    end
+    context "raises an exception when" do
 
-    it "raises an exception when name taken" do
-      stub_register(:no_name)
-      expect { subject.register('foo') }.to raise_error IpTracker::Client::HostTakenError
+      it "failed" do
+        stub_register(:failed)
+        expect { subject.register('foo') }.to raise_error IpTracker::Client::TargetError
+      end
+
+
+      it "name taken" do
+        stub_register(:no_name)
+        expect { subject.register('foo') }.to raise_error IpTracker::Client::HostTakenError
+      end
+
+      it "response invalid" do
+        stub_register(:invalid)
+        expect { subject.register('foo') }.to raise_error IpTracker::Client::TargetError
+      end
     end
   end
 end

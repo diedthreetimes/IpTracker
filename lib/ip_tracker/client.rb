@@ -1,3 +1,4 @@
+
 require 'faraday_middleware'
 
 module IpTracker
@@ -16,10 +17,12 @@ module IpTracker
         builder.adapter :net_http
       end
 
-      response = connection.post(IpTracker::HOSTS_PATH, :hostname => hostname).body
+      response = connection.post(IpTracker::HOSTS_PATH, name: hostname).body
       raise HostTakenError if response.code == 201
       raise TargetError if response.code == 200
-      @host_token = response.token
+
+      raise TargetError if response.id == nil
+      @host_token = response.id
     end
   end
 end

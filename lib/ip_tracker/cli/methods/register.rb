@@ -11,8 +11,9 @@ module IpTracker
         token = client.register(hostname)
         say "Registration completed.", :green
         config.update(:host_token, token)
+      else
+        say "This computer has already been registered."
       end
-
     rescue IpTracker::Client::TargetError
       say "Registration failed."
     rescue IpTracker::Client::HostTakenError

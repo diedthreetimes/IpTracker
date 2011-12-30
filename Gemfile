@@ -13,5 +13,7 @@ platform :ruby do
   gem 'rb-inotify'
 end
 
+gem 'guard', :git => "git://github.com/guard/guard.git"    
+
 # Specify your gem's dependencies in ip_tracker.gemspec
 gemspec

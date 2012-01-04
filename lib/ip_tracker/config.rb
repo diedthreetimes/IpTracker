@@ -11,6 +11,10 @@ module IpTracker
       config_hash["host_token"] || nil
     end
 
+    def pid
+      config_hash["pid"] || nil
+    end
+
     def update(attr, value)
       config_hash[attr.to_s] = value
 

@@ -25,14 +25,14 @@ module IpTracker
           new_ip = local_ip
 
           if @last_ip != new_ip
+            puts "#{Time.now}: Updating to #{new_ip}"
             update_ip new_ip
 
             @last_ip = new_ip
           end
-        rescue
-          # TODO: Figure out what error is raised by start
-          puts "Some terrible error occured"
-          @run = false
+        rescue Client::TargetError
+          puts "An error occured trying to communicate with the server, sleeping"
+          sleep(6000) unless !@runs.nil?
         end
       end
     end
@@ -48,9 +48,17 @@ module IpTracker
       Socket.do_not_reverse_lookup = orig
     end
 
+    def update_ip ip
+      client.update(config.host_token, :ip, ip)
+      #  CLI.start( ['update', '--ip', ip] )
+    end
 
-      def update_ip ip
-      CLI.start( ['update', '--ip', ip] )
+    def config
+      @config ||= Config.new
+    end
+
+    def client
+      @client ||= Client.new
     end
   end
 end

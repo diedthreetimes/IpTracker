@@ -22,3 +22,4 @@ end
 
 require 'ip_tracker/cli/methods/register'
 require 'ip_tracker/cli/methods/update'
+require 'ip_tracker/cli/methods/sync'

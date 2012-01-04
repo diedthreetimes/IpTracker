@@ -7,7 +7,7 @@ module IpTracker
 
     attr_accessor :last_ip
 
-    def initialize(config)
+    def initialize(config = {})
       @run = true
       @runs = config[:runs].nil? ? nil : config[:runs]
       @sleep = config[:sleep].nil? ? 60 : config[:sleep]

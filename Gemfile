@@ -14,6 +14,7 @@ platform :ruby do
 end
 
 gem 'guard', :git => "git://github.com/guard/guard.git"    
+gem 'looper', :git => "git@github.com:diedthreetimes/looper.git"
 
 # Specify your gem's dependencies in ip_tracker.gemspec
 gemspec

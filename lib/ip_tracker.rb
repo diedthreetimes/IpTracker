@@ -10,3 +10,4 @@ end
 require 'ip_tracker/config'
 require 'ip_tracker/cli'
 require 'ip_tracker/client'
+require 'ip_tracker/sync_daemon'

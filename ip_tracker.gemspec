@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "yajl-ruby"
   s.add_runtime_dependency "multi_json"
   s.add_runtime_dependency "rash"
+  s.add_runtime_dependency "looper"
 end

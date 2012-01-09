@@ -31,9 +31,13 @@ module IpTracker
         if config.pid
           say "Killing #{config.pid}"
 
-          Process.kill("TERM", config.pid)
+          begin
+            Process.kill("TERM", config.pid)
+          rescue Errno::ESRCH
+            say "Process is already dead"
+          end
 
-          say "Killed"
+          config.update(:pid, nil)
         else
           say "No PID saved"
         end

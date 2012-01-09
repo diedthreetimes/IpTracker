@@ -1,3 +1,4 @@
+require 'yaml'
 module IpTracker
   class Config
     attr_accessor :config_hash, :settings_path

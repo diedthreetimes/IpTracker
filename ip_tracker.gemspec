@@ -6,10 +6,10 @@ Gem::Specification.new do |s|
   s.name        = "ip_tracker"
   s.version     = IpTracker::VERSION
   s.authors     = ["Sky Faber"]
-  s.email       = ["skyf@alleninstitute.org"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.email       = ["skyfaber@gmail.com"]
+  s.homepage    = "https://github.com/diedthreetimes/IpTracker"
+  s.summary     = %q{A command line utility to interface with IpMe}
+  s.description = %q{Keep a dynamic IP up to date without the use of DNS. Either sync manually or automatically to a known location.}
 
   s.rubyforge_project = "ip_tracker"
 

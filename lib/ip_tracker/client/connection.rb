@@ -7,9 +7,9 @@ module IpTracker
 
       def connection
         connection = Faraday.new(:url => target_url) do |builder|
-          builder.use Faraday::Request::JSON
+          builder.use FaradayMiddleware::EncodeJson
           builder.use Faraday::Response::Rashify
-          builder.use Faraday::Response::ParseJson
+          builder.use Faraday::Response::ParseJson, content_type: 'application/json'
 
           builder.adapter http_adapter
         end
